@@ -2,25 +2,23 @@ require_relative "Product.rb"
 class Purchase
 
 	attr_accessor :products
-	attr_accessor :suma_total
+	attr_accessor :total
 	
 	def initialize
 		@products = []
+		@total    = 0
 	end
 	
 	def add a_product
+			self.total += a_product.price.to_i 
 			products.push a_product
 			puts "done..."
 	end
 
 	def delete
+		total -= products.last.price.to_i
 		products.pop
 		puts "done..."	
-	end
-
-	def total
-		suma_total = products.collect { |product| product.price.to_i }.inject { |sum, elem| sum+elem  }.to_i	 
-		puts suma_total
 	end
 	
 	def apply_discount
@@ -35,15 +33,17 @@ p = Purchase.new
 p.add p1
 p.add p2
 
-p.total
+puts p.total
 # => 60
 
 p.apply_discount do |purchase|
   p hammers = purchase.products.collect { |product| product.code == '01' }
-  purchase.suma_total -= purchase.suma_total * 0.1 if hammers.any?
+  purchase.total -= purchase.total * 0.1 if hammers.any?
 end
 
-p.total
+puts p.total
+
+
 
 
 
