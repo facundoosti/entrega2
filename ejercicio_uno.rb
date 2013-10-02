@@ -1,6 +1,6 @@
     
 module Caminar
-    def caminador
+    def caminar
         puts "caminando"
     end
 end
@@ -8,6 +8,11 @@ end
 module Nadar
     def nadar
         puts "caminando"
+    end
+end
+module Desplazar
+    def desplazar
+        puts "desplazando"
     end
 end
 
@@ -22,8 +27,7 @@ class Perro < Mamifero
 end
 
 class Ballena < Mamifero
-        include Nadar
-            
+        include Nadar            
 end
 
 class Hombre < Mamifero
@@ -50,9 +54,6 @@ end
 
 
 class Reptil
-    def volar
-        puts "volando"
-    end
 end
 
 class Cocodrilo < Reptil
@@ -61,18 +62,14 @@ class Cocodrilo < Reptil
 end
 
 class Boa < Reptil
-    def desplazar
-        puts "desplazando"
-    end
+    include Desplazar
     def constriccionar
         puts "constriccionando"
     end
 end
 
 class Cobra < Reptil
-    def desplazar
-        puts "desplazando"
-    end
+    include Desplazar
 
     def morder
         puts "mordiendo"
@@ -96,4 +93,19 @@ end
 
 class Tiburon < Peces
         
+end
+
+# Casos de Prueba: Ejercicio1
+
+def casos_de_prueba_ejercicio_uno
+    un_hombre = Hombre.new
+    un_hombre.caminar
+    otro_hombre = Hombre.new
+    otro_hombre.hablar
+    un_sapo= Sapo.new
+    un_sapo.saltar
+    un_aguila= Aguila.new
+    un_aguila.volar
+    un_perro= Perro.new
+    un_perro.volar
 end
