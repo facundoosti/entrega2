@@ -114,8 +114,7 @@ def casos_de_prueba_ejercicio_dos
 	puts "Descuento si tiene más de 3 productos iguales, cada 3 paga 2:"
 	# Descuento si tiene más de 3 productos iguales, cada 3 paga 2
 	p.apply_discount do |purchase|
-		productos = purchase.products.group_by{|product| product.code}.select {|k,v| v.size >= 3  }
-		productos.each {|k, v| purchase.total -= v.first.prize.to_i * (v.size / 3) }   
+		purchase.products.group_by{|product| product.code}.select {|k,v| v.size >= 3}.each {|k, v| purchase.total -= v.first.prize.to_i * (v.size / 3) }   
 	end	
 
 	puts "Total: #{p.total}"
